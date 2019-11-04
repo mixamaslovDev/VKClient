@@ -31,7 +31,13 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let vkGroups = VkApi()
+        vkGroups.getFriends { [weak self] friends in
+            self?.users = friends.response.items
+            self?.tableFriends.reloadData()
+        }
         
+                
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
