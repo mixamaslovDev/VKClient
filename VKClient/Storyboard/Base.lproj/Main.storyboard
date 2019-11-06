@@ -323,7 +323,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="7JT-hc-Hg5">
-                                            <rect key="frame" x="20" y="51" width="119" height="20.5"/>
+                                            <rect key="frame" x="20" y="51" width="189" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -337,14 +337,14 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="20"/>
+                                                    <integer key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="DHU-bF-cNV" secondAttribute="trailing" constant="25" id="0ua-mO-38j"/>
-                                        <constraint firstItem="DHU-bF-cNV" firstAttribute="leading" secondItem="7JT-hc-Hg5" secondAttribute="trailing" constant="200" id="1fW-EH-WUA"/>
+                                        <constraint firstItem="DHU-bF-cNV" firstAttribute="leading" secondItem="7JT-hc-Hg5" secondAttribute="trailing" constant="130" id="1fW-EH-WUA"/>
                                         <constraint firstAttribute="bottom" secondItem="DHU-bF-cNV" secondAttribute="bottom" constant="16" id="CWg-Kt-KiZ"/>
                                         <constraint firstItem="7JT-hc-Hg5" firstAttribute="leading" secondItem="rjx-dV-yeA" secondAttribute="leading" constant="20" id="Lvi-1P-RuW"/>
                                         <constraint firstItem="7JT-hc-Hg5" firstAttribute="centerY" secondItem="rjx-dV-yeA" secondAttribute="centerY" id="jDF-DG-N6c"/>

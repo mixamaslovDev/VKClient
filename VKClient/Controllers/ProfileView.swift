@@ -12,7 +12,7 @@ class PhotosTablesView: UICollectionViewController {
     
     private let reuseIdentifier = "photoCell"
     
-    var photosUser: UIImage?
+    var photosUser: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class PhotosTablesView: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-        cell.photoImage.image = photosUser
+        cell.photoImage = photosUser
         
         return cell
     }

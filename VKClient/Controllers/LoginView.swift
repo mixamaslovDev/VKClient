@@ -38,20 +38,6 @@ extension LoginView: WKNavigationDelegate {
         
         print(session.token ?? "", session.userId ?? "")
         
-        //        let vkApi = VkApi()
-        //        vkApi.getFriends { friends in
-        //            print(friends.response.items.map({$0.firstName}))
-        //            print(friends.response.items.map({$0.lastName}))
-        //            print(friends.response.items.map({$0.photo_50}))
-        //
-        //        }
-        //
-        //        vkApi.getGroups { groups1 in
-        //            print(groups1.response.items.map({$0.name}))
-        //
-        //                }
-        //
-        
         
         let viewController = storyboard?.instantiateViewController(withIdentifier: "tabbar") as! UIViewController
         self.present(viewController, animated: true)

@@ -13,10 +13,10 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableFriends: UITableView!
     
-    var users = [UserItem]()
-       var usersDictionary = [String: [UserItem]]()
-       var filteredUsers = [UserItem]()
-       var userSectionTitles = [String]()
+    var users : [UserItem] = []
+    var usersDictionary = [String: [UserItem]]()
+    var filteredUsers = [UserItem]()
+    var userSectionTitles = [String]()
     
     let searchController = UISearchController(searchResultsController: nil)
     var isFiltering: Bool {
@@ -26,40 +26,35 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let vkGroups = VkApi()
-        vkGroups.getFriends { [weak self] friends in
-            self?.users = friends.response.items
-            self?.tableFriends.reloadData()
+        vkGroups.getFriends { [self] friends in
+            self.users = friends.response.items
+            for name in self.users {
+                let usrKey = String(name.lastName.prefix(1))
+                if var usrValues = self.usersDictionary[usrKey] {
+                    usrValues.append(name)
+                    self.usersDictionary[usrKey] = usrValues
+                } else {
+                    self.usersDictionary[usrKey] = [name]
+                }
+            }
+            self.userSectionTitles = [String](self.usersDictionary.keys)
+            self.userSectionTitles = self.userSectionTitles.sorted(by: { $0 < $1})
+            self.tableFriends.reloadData()
         }
         
-                
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = false
-        
-        
-        for name in users {
-            let usrKey = String(name.lastName.prefix(1))
-            if var usrValues = usersDictionary[usrKey] {
-                usrValues.append(name)
-                usersDictionary[usrKey] = usrValues
-            } else {
-                usersDictionary[usrKey] = [name]
-            }
-        }
-        
-        userSectionTitles = [String](usersDictionary.keys)
-        userSectionTitles = userSectionTitles.sorted(by: { $0 < $1})
-        tableFriends.reloadData()
-        
-    
+                
     }
     
     
@@ -93,16 +88,16 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
         
         if isFiltering {
             let url = URL(string: filteredUsers[indexPath.row].photo_50)
-            cell.nameLabel.text = filteredUsers[indexPath.row].lastName
+            cell.nameLabel.text = filteredUsers[indexPath.row].firstName + " " + filteredUsers[indexPath.row].lastName
             cell.userPhoto.kf.setImage(with: url)
             
         } else {
             let userKey = userSectionTitles[indexPath.section]
             if let userValues = usersDictionary[userKey] {
-                let url = URL(string: filteredUsers[indexPath.row].photo_50)
-                cell.nameLabel.text = userValues[indexPath.row].lastName
+                let url = URL(string: userValues[indexPath.row].photo_50)
+                cell.nameLabel.text = userValues[indexPath.row].firstName + " " + userValues[indexPath.row].lastName
                 cell.userPhoto.kf.setImage(with: url)
-
+                
             }
         }
         
@@ -114,14 +109,14 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-        
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let userKey = userSectionTitles[indexPath.section]
             if var userValues = usersDictionary[userKey] {
                 userValues.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
-
+                
             }
         }
     }
@@ -141,15 +136,15 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
             
             
             if isFiltering {
-
-                destinationController.navigationItem.title = filteredUsers[index].lastName
-//                destinationController.photosUser = filteredUsers[index].photo_50
+//                let url = URL(string: filteredUsers[index].photo_50)
+                destinationController.navigationItem.title = filteredUsers[index].firstName + " " + filteredUsers[index].lastName
+//                destinationController.photosUser.kf.setImage(with: url)
                 
             } else {
-                
+//                let url = URL(string: usersInSection[index].photo_50)
                 if usersInSection.count > index {
-                    destinationController.navigationItem.title = usersInSection[index].lastName
-//                    destinationController.photosUser = usersInSection[index].photo[0]
+                    destinationController.navigationItem.title = usersInSection[index].firstName + " " + usersInSection[index].lastName
+//                    destinationController.photosUser.kf.setImage(with: url)
                 }
             }
         }
