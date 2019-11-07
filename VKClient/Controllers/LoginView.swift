@@ -12,7 +12,7 @@ import UIKit
 import WebKit
 import Alamofire
 
-//webview tincture for receiving information for requests
+//Webview tincture for receiving information for requests
 
 extension LoginView: WKNavigationDelegate {
     
@@ -46,7 +46,7 @@ extension LoginView: WKNavigationDelegate {
     }
 }
 
-//request for vkapi
+//Request for vkapi
 
 class LoginView: UIViewController {
     

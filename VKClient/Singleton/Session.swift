@@ -17,3 +17,4 @@ class Session {
     var userId: String?
     
 }
+ let vk = VkApi()

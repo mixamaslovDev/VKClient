@@ -17,8 +17,8 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     var usersDictionary = [String: [UserItem]]()
     var filteredUsers = [UserItem]()
     var userSectionTitles = [String]()
-    
     let searchController = UISearchController(searchResultsController: nil)
+    
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
@@ -30,9 +30,25 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let vkGroups = VkApi()
-        vkGroups.getFriends { [self] friends in
+        setKeysForSections()
+        setSearchBar()
+    }
+    
+    // Set Search Bar on FriendsView
+    
+    fileprivate func setSearchBar() {
+    searchController.searchResultsUpdater = self
+           searchController.obscuresBackgroundDuringPresentation = false
+           searchController.searchBar.placeholder = "Поиск"
+           navigationItem.searchController = searchController
+           definesPresentationContext = false
+    }
+    
+    
+    // Set Sections on FriendsView
+    
+    fileprivate func setKeysForSections() {
+        vk.getFriends { [self] friends in
             self.users = friends.response.items
             for name in self.users {
                 let usrKey = String(name.lastName.prefix(1))
@@ -47,15 +63,8 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
             self.userSectionTitles = self.userSectionTitles.sorted(by: { $0 < $1})
             self.tableFriends.reloadData()
         }
-        
-        
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
-        navigationItem.searchController = searchController
-        definesPresentationContext = false
-                
     }
+    
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,15 +145,15 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
             
             
             if isFiltering {
-//                let url = URL(string: filteredUsers[index].photo_50)
+                //                let url = URL(string: filteredUsers[index].photo_50)
                 destinationController.navigationItem.title = filteredUsers[index].firstName + " " + filteredUsers[index].lastName
-//                destinationController.photosUser.kf.setImage(with: url)
+                //                destinationController.photosUser.kf.setImage(with: url)
                 
             } else {
-//                let url = URL(string: usersInSection[index].photo_50)
+                //                let url = URL(string: usersInSection[index].photo_50)
                 if usersInSection.count > index {
                     destinationController.navigationItem.title = usersInSection[index].firstName + " " + usersInSection[index].lastName
-//                    destinationController.photosUser.kf.setImage(with: url)
+                    //                    destinationController.photosUser.kf.setImage(with: url)
                 }
             }
         }

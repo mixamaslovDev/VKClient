@@ -10,7 +10,6 @@ import UIKit
 
 class GroupsTableView: UITableViewController {
     
-    let vkGroups = VkApi()
     var groups = [GroupsItem]()
     
 //    @IBAction func returnToMyGroups(unwindSegue: UIStoryboardSegue) {
@@ -27,8 +26,7 @@ class GroupsTableView: UITableViewController {
 //    }
     
     override func viewDidLoad() {
-          let vkGroups = VkApi()
-                vkGroups.getGroups { [weak self] groups in
+        vk.getGroups { [weak self] groups in
                     self?.groups = groups.response.items
                     self?.tableView.reloadData()
                 }

@@ -12,7 +12,6 @@ class NewsContoller: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(UINib(nibName: "NewsFeedPost", bundle: nil), forCellReuseIdentifier: "postCell")
         
     }

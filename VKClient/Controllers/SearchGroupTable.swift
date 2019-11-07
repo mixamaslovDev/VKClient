@@ -13,14 +13,13 @@ import Kingfisher
 class SearchGroupTableView: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var GroupSearchBar: UISearchBar!
-    //    var groups1 = groupsF
+
     var groups = [ItemSearchGroup]()
     
     
     override func viewDidLoad() {
         GroupSearchBar.delegate = self
-        let vkGroups = VkApi()
-        vkGroups.getGroupsSearch(text: "Apple") { [weak self] groups in
+        vk.getGroupsSearch(text: "Apple") { [weak self] groups in
             self?.groups = groups.response.items
             self?.tableView.reloadData()
         }
@@ -29,21 +28,20 @@ class SearchGroupTableView: UITableViewController, UISearchBarDelegate {
     
     
     func searchBar(_ search:UISearchBar, textDidChange searchText: String) {
-        let vkGroups = VkApi()
         
-        vkGroups.getGroupsSearch(text: searchText) { [weak self] groups in
+        vk.getGroupsSearch(text: searchText) { [weak self] groups in
             self?.groups = groups.response.items
             self?.tableView.reloadData()
-            }
+        }
         
         if searchText.isEmpty {
-            vkGroups.getGroupsSearch(text: "Apple") { [weak self] groups in
-            self?.groups = groups.response.items
-            self?.tableView.reloadData()
+            vk.getGroupsSearch(text: "Apple") { [weak self] groups in
+                self?.groups = groups.response.items
+                self?.tableView.reloadData()
             }
+            
         }
-        
-        }
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups.count

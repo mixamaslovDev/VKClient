@@ -136,15 +136,15 @@
         <!--Tab Bar Controller-->
         <scene sceneID="1g1-rr-DMW">
             <objects>
-                <tabBarController storyboardIdentifier="tabbar" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="ALA-Bw-n6X" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabbar" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="ALA-Bw-n6X" customClass="TabBarController" customModule="VKClient" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="zR7-b6-hJ8"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="J8l-eR-bBi">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8l-eR-bBi" customClass="tabBar" customModule="VKClient" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <viewLayoutGuide key="safeArea" id="0D7-3E-aHh"/>
+                        <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="jM7-9d-CBk" kind="relationship" relationship="viewControllers" id="a4c-h9-j0P"/>
@@ -438,7 +438,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jM7-9d-CBk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="newsFeedIcon" springLoaded="YES" id="Gk9-Sp-ran">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="MZ7-Fz-8oh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vxv-lh-BzJ">
@@ -487,7 +487,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dPC-vE-pPK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="Friends" springLoaded="YES" id="klH-Gp-Mej">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="badgeColor" cocoaTouchSystemColor="darkTextColor"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BEy-V9-cve">
@@ -508,7 +508,7 @@
             <objects>
                 <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" id="K1k-VW-sST" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="Groups" id="BsT-ek-kQ9">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="badgeColor" cocoaTouchSystemColor="darkTextColor"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="CqT-0a-VgC">
