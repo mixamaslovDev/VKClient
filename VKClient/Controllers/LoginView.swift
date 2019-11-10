@@ -11,6 +11,7 @@
 import UIKit
 import WebKit
 import Alamofire
+import RealmSwift
 
 //Webview tincture for receiving information for requests
 
@@ -69,6 +70,7 @@ class LoginView: UIViewController {
         webView.navigationDelegate = self
         
         
+        
     }
     
 }
@@ -78,6 +80,19 @@ class LoginView: UIViewController {
 
 class VkApi {
     let session = Session.shared
+    
+    func saveUsersData(_ friends: FriendsResponse) {
+            do {
+                let realm = try Realm()
+                realm.beginWrite()
+                realm.add(friends)
+                try realm.commitWrite()
+            } catch {
+                print(error)
+            }
+        }
+
+    
     
     func getFriends(completionHandler: @escaping (FriendsResponse) -> ()) {
         var composer = URLComponents()
@@ -95,6 +110,7 @@ class VkApi {
         
         Alamofire.request(composer, method: .get).responseJSON {(friendsList) in
             let friends = try! JSONDecoder().decode(FriendsResponse.self, from: friendsList.data!)
+            self.saveUsersData(friends)
             completionHandler(friends)
         }
     }
@@ -114,8 +130,8 @@ class VkApi {
         ]
         
         Alamofire.request(composer, method: .get).responseJSON {(photoList) in
-            let groups = try! JSONDecoder().decode(PhotosResponse.self, from: photoList.data!)
-            completionHandler(groups)
+            let photos = try! JSONDecoder().decode(PhotosResponse.self, from: photoList.data!)
+            completionHandler(photos)
         }
     }
     

@@ -6,13 +6,6 @@
 //  Copyright © 2019 Михаил Маслов. All rights reserved.
 //
 
-import UIKit
-
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let photosResponse = try? newJSONDecoder().decode(PhotosResponse.self, from: jsonData)
-
 import Foundation
 
 // MARK: - PhotosResponse
