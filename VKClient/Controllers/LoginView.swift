@@ -81,18 +81,29 @@ class LoginView: UIViewController {
 class VkApi {
     let session = Session.shared
     
-    func saveUsersData(_ friends: FriendsResponse) {
-            do {
-                let realm = try Realm()
-                realm.beginWrite()
-                realm.add(friends)
-                try realm.commitWrite()
-            } catch {
-                print(error)
-            }
+    func saveUsersData(_ data: FriendsResponse) {
+        do {
+            let realm = try Realm()
+            print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+            realm.beginWrite()
+            realm.add(data)
+            try realm.commitWrite()
+        } catch {
+            print(error)
         }
-
+    }
     
+    func saveGroupsData(_ data: GroupsResponse) {
+        do {
+            let realm = try Realm()
+            print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+            realm.beginWrite()
+            realm.add(data)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
     
     func getFriends(completionHandler: @escaping (FriendsResponse) -> ()) {
         var composer = URLComponents()
@@ -107,6 +118,7 @@ class VkApi {
             URLQueryItem(name: "access_token", value: session.token),
             URLQueryItem(name: "v", value: "5.8")
         ]
+        
         
         Alamofire.request(composer, method: .get).responseJSON {(friendsList) in
             let friends = try! JSONDecoder().decode(FriendsResponse.self, from: friendsList.data!)
@@ -150,6 +162,7 @@ class VkApi {
         
         Alamofire.request(composer, method: .get).responseJSON {(groupsList) in
             let groups = try! JSONDecoder().decode(GroupsResponse.self, from: groupsList.data!)
+             self.saveGroupsData(groups)
             completionHandler(groups)
         }
     }

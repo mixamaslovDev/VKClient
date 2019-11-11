@@ -33,7 +33,7 @@ var allImages = users.flatMap({$0.photo})
 
 
 class FriendsResponse: Object, Codable {
-    @objc dynamic var response: ResponseFriends
+    @objc dynamic var response: ResponseFriends?
     
 //    convenience init(response: ResponseFriends) {
 //        self.init()
@@ -44,7 +44,8 @@ class FriendsResponse: Object, Codable {
 // MARK: - Response
 class ResponseFriends: Object, Codable {
     @objc dynamic var count = 0
-    @objc dynamic var items: [UserItem]
+    var items = List<UserItem>()
+    
     
 //   convenience init(items: [UserItem]) {
 //        self.init()

@@ -8,12 +8,12 @@
 
 import UIKit
 import Kingfisher
-
+import RealmSwift
 class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableFriends: UITableView!
     
-    var users : [UserItem] = []
+    var users = List <UserItem>()
     var usersDictionary = [String: [UserItem]]()
     var filteredUsers = [UserItem]()
     var userSectionTitles = [String]()
@@ -49,7 +49,7 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     fileprivate func setKeysForSections() {
         vk.getFriends { [self] friends in
-            self.users = friends.response.items
+            self.users = friends.response!.items
             for name in self.users {
                 let usrKey = String(name.lastName.prefix(1))
                 if var usrValues = self.usersDictionary[usrKey] {

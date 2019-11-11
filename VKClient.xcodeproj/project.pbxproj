@@ -92,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				458CA34E234F6E4D0094017B /* NewsFeedPost.xib */,
+				45FA69752332E0AD00FB6356 /* GroupsCell.swift */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -171,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				4545A9122332C95E00597855 /* FriendsCell.swift */,
-				45FA69752332E0AD00FB6356 /* GroupsCell.swift */,
 				4545A9092332A7B700597855 /* PhotoCell.swift */,
 				45144C9423338FF10000D758 /* FindGroupCell.swift */,
 				451A883D234F832500586428 /* PostCell.swift */,

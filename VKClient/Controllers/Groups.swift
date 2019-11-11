@@ -7,10 +7,10 @@
 //
 
 import UIKit
-
+import RealmSwift
 class GroupsTableView: UITableViewController {
     
-    var groups = [GroupsItem]()
+    var groups = List<GroupsItem>()
     
 //    @IBAction func returnToMyGroups(unwindSegue: UIStoryboardSegue) {
 //        if unwindSegue.identifier == "addGroup" {
@@ -27,7 +27,7 @@ class GroupsTableView: UITableViewController {
     
     override func viewDidLoad() {
         vk.getGroups { [weak self] groups in
-                    self?.groups = groups.response.items
+                    self?.groups = groups.response!.items
                     self?.tableView.reloadData()
                 }
        }
