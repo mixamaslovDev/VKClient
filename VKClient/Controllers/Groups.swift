@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+
 class GroupsTableView: UITableViewController {
     
     var groups = List<GroupsItem>()
@@ -42,7 +43,7 @@ class GroupsTableView: UITableViewController {
         let url = URL(string: groups[indexPath.row].photo100)
         
         cell.nameGroup.text = groups[indexPath.row].name
-        cell.groupPhoto.kf.setImage(with: url)
+        cell.groupPhoto.kf.setImage(with: url, options: [.cacheOriginalImage])
         
         return cell
     }

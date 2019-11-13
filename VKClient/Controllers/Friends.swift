@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+
 class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableFriends: UITableView!
@@ -105,7 +106,9 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
             if let userValues = usersDictionary[userKey] {
                 let url = URL(string: userValues[indexPath.row].photo_50)
                 cell.nameLabel.text = userValues[indexPath.row].firstName + " " + userValues[indexPath.row].lastName
-                cell.userPhoto.kf.setImage(with: url)
+//                cell.userPhoto.kf.setImage(with: url, options: [.cacheOriginalImage])
+               
+              
                 
             }
         }

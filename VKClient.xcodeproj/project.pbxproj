@@ -25,6 +25,7 @@
 		4545A9112332C0C100597855 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4545A9102332C0C100597855 /* Group.swift */; };
 		4545A9132332C95E00597855 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4545A9122332C95E00597855 /* FriendsCell.swift */; };
 		45706ACD2360E25E005833D2 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45706ACC2360E25E005833D2 /* Session.swift */; };
+		45715709237C605F0022355E /* LogOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45715708237C605F0022355E /* LogOut.swift */; };
 		458CA34F234F6E4D0094017B /* NewsFeedPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458CA34E234F6E4D0094017B /* NewsFeedPost.xib */; };
 		45C814A723709EED00EC61B1 /* SearchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C814A623709EED00EC61B1 /* SearchGroup.swift */; };
 		45D6ADFD23382C1000010DD4 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D6ADFC23382C1000010DD4 /* Avatar.swift */; };
@@ -58,6 +59,7 @@
 		4545A9102332C0C100597855 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4545A9122332C95E00597855 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		45706ACC2360E25E005833D2 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		45715708237C605F0022355E /* LogOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOut.swift; sourceTree = "<group>"; };
 		458CA34E234F6E4D0094017B /* NewsFeedPost.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedPost.xib; sourceTree = "<group>"; };
 		45C814A623709EED00EC61B1 /* SearchGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroup.swift; sourceTree = "<group>"; };
 		45D6ADFC23382C1000010DD4 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				45108F5F232D783A00895CB3 /* Groups.swift */,
 				45108F61232D788700895CB3 /* SearchGroupView.swift */,
 				45FBA22B2327F923001F4276 /* LoginViewController(old).swift */,
+				45715708237C605F0022355E /* LogOut.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				45EE59852358C36100CAB60D /* FriendsSearch.swift in Sources */,
 				4545A90A2332A7B700597855 /* PhotoCell.swift in Sources */,
 				45447045233D23610012CD97 /* UIColor.swift in Sources */,
+				45715709237C605F0022355E /* LogOut.swift in Sources */,
 				45FA69762332E0AD00FB6356 /* GroupsCell.swift in Sources */,
 				45108F5C232D73B000895CB3 /* Friends.swift in Sources */,
 				45EEF5AD23648B5A00503BEF /* LoginView.swift in Sources */,

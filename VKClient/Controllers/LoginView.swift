@@ -13,7 +13,7 @@ import WebKit
 import Alamofire
 import RealmSwift
 
-//Webview tincture for receiving information for requests
+//Webview tincture for receiving information for requests --------------------
 
 extension LoginView: WKNavigationDelegate {
     
@@ -47,7 +47,7 @@ extension LoginView: WKNavigationDelegate {
     }
 }
 
-//Request for vkapi
+//Request for vkapi --------------------------------------------------------
 
 class LoginView: UIViewController {
     
@@ -75,19 +75,18 @@ class LoginView: UIViewController {
     
 }
 
+//Add data to Realm Database ----------------------------------------------
 
-// Get requests --------------------------------------------------------
-
-class VkApi {
-    let session = Session.shared
+class ReamlAdd {
     
     func saveUsersData(_ data: FriendsResponse) {
         do {
             let realm = try Realm()
+            guard realm.objects(FriendsResponse.self).first == nil  else { return }
             print(Realm.Configuration.defaultConfiguration.fileURL as Any)
-            realm.beginWrite()
-            realm.add(data)
-            try realm.commitWrite()
+            try realm.write {
+                realm.add(data)
+            }
         } catch {
             print(error)
         }
@@ -96,95 +95,104 @@ class VkApi {
     func saveGroupsData(_ data: GroupsResponse) {
         do {
             let realm = try Realm()
+            guard realm.objects(GroupsResponse.self).first == nil  else { return }
             print(Realm.Configuration.defaultConfiguration.fileURL as Any)
-            realm.beginWrite()
-            realm.add(data)
-            try realm.commitWrite()
+            try realm.write {
+                realm.add(data)
+            }
         } catch {
             print(error)
         }
     }
+}
     
-    func getFriends(completionHandler: @escaping (FriendsResponse) -> ()) {
-        var composer = URLComponents()
-        composer.scheme = "https"
-        composer.host = "api.vk.com"
-        composer.path = "/method/friends.get"
-        composer.queryItems = [
-            URLQueryItem(name: "user_id", value: session.userId),
-            URLQueryItem(name: "order", value: "hints"),
-            URLQueryItem(name: "count", value: ""),
-            URLQueryItem(name: "fields", value: "domain,photo_50"),
-            URLQueryItem(name: "access_token", value: session.token),
-            URLQueryItem(name: "v", value: "5.8")
-        ]
+    
+// Get requests --------------------------------------------------------
+    
+    class VkApi {
+        let session = Session.shared
+        let realm = ReamlAdd()
         
-        
-        Alamofire.request(composer, method: .get).responseJSON {(friendsList) in
-            let friends = try! JSONDecoder().decode(FriendsResponse.self, from: friendsList.data!)
-            self.saveUsersData(friends)
-            completionHandler(friends)
+        func getFriends(completionHandler: @escaping (FriendsResponse) -> ()) {
+            var composer = URLComponents()
+            composer.scheme = "https"
+            composer.host = "api.vk.com"
+            composer.path = "/method/friends.get"
+            composer.queryItems = [
+                URLQueryItem(name: "user_id", value: session.userId),
+                URLQueryItem(name: "order", value: "hints"),
+                URLQueryItem(name: "count", value: ""),
+                URLQueryItem(name: "fields", value: "domain,photo_50"),
+                URLQueryItem(name: "access_token", value: session.token),
+                URLQueryItem(name: "v", value: "5.8")
+            ]
+            
+            
+            Alamofire.request(composer, method: .get).responseJSON {(friendsList) in
+                let friends = try! JSONDecoder().decode(FriendsResponse.self, from: friendsList.data!)
+                self.realm.saveUsersData(friends)
+                completionHandler(friends)
+            }
         }
-    }
-    
-    func getPhotos(completionHandler: @escaping (PhotosResponse) -> ()) {
-        var composer = URLComponents()
-        composer.scheme = "https"
-        composer.host = "api.vk.com"
-        composer.path = "/method/groups.get"
-        composer.queryItems = [
-            URLQueryItem(name: "user_id", value: session.userId),
-            URLQueryItem(name: "album_id", value: "profile"),
-            URLQueryItem(name: "rev", value: "1"),
-            URLQueryItem(name: "count", value: "5"),
-            URLQueryItem(name: "access_token", value: session.token),
-            URLQueryItem(name: "v", value: "5.8")
-        ]
         
-        Alamofire.request(composer, method: .get).responseJSON {(photoList) in
-            let photos = try! JSONDecoder().decode(PhotosResponse.self, from: photoList.data!)
-            completionHandler(photos)
+        func getPhotos(completionHandler: @escaping (PhotosResponse) -> ()) {
+            var composer = URLComponents()
+            composer.scheme = "https"
+            composer.host = "api.vk.com"
+            composer.path = "/method/groups.get"
+            composer.queryItems = [
+                URLQueryItem(name: "user_id", value: session.userId),
+                URLQueryItem(name: "album_id", value: "profile"),
+                URLQueryItem(name: "rev", value: "1"),
+                URLQueryItem(name: "count", value: "5"),
+                URLQueryItem(name: "access_token", value: session.token),
+                URLQueryItem(name: "v", value: "5.8")
+            ]
+            
+            Alamofire.request(composer, method: .get).responseJSON {(photoList) in
+                let photos = try! JSONDecoder().decode(PhotosResponse.self, from: photoList.data!)
+                completionHandler(photos)
+            }
         }
-    }
-    
-    func getGroups(completionHandler: @escaping (GroupsResponse) -> ()) {
-        var composer = URLComponents()
-        composer.scheme = "https"
-        composer.host = "api.vk.com"
-        composer.path = "/method/groups.get"
-        composer.queryItems = [
-            URLQueryItem(name: "user_id", value: session.userId),
-            URLQueryItem(name: "extended", value: "1"),
-            URLQueryItem(name: "count", value: ""),
-            URLQueryItem(name: "access_token", value: session.token),
-            URLQueryItem(name: "v", value: "5.8")
-        ]
         
-        Alamofire.request(composer, method: .get).responseJSON {(groupsList) in
-            let groups = try! JSONDecoder().decode(GroupsResponse.self, from: groupsList.data!)
-             self.saveGroupsData(groups)
-            completionHandler(groups)
+        func getGroups(completionHandler: @escaping (GroupsResponse) -> ()) {
+            var composer = URLComponents()
+            composer.scheme = "https"
+            composer.host = "api.vk.com"
+            composer.path = "/method/groups.get"
+            composer.queryItems = [
+                URLQueryItem(name: "user_id", value: session.userId),
+                URLQueryItem(name: "extended", value: "1"),
+                URLQueryItem(name: "count", value: ""),
+                URLQueryItem(name: "access_token", value: session.token),
+                URLQueryItem(name: "v", value: "5.8")
+            ]
+            
+            Alamofire.request(composer, method: .get).responseJSON {(groupsList) in
+                let groups = try! JSONDecoder().decode(GroupsResponse.self, from: groupsList.data!)
+                self.realm.saveGroupsData(groups)
+                completionHandler(groups)
+            }
         }
-    }
-    
-    func getGroupsSearch(text:String, completionHandler: @escaping (SearchGroupResponse) -> ()) {
-        var composer = URLComponents()
-        composer.scheme = "https"
-        composer.host = "api.vk.com"
-        composer.path = "/method/groups.search"
-        composer.queryItems = [
-            URLQueryItem(name: "q", value: text),
-            URLQueryItem(name: "type", value: "group"),
-            URLQueryItem(name: "sort", value: "0"),
-            URLQueryItem(name: "access_token", value: session.token),
-            URLQueryItem(name: "v", value: "5.8")
-        ]
         
-        Alamofire.request(composer, method: .get).responseJSON {(groupsSearchList) in
-            let groupsSearch = try! JSONDecoder().decode(SearchGroupResponse.self, from: groupsSearchList.data!)
-            completionHandler(groupsSearch)
+        func getGroupsSearch(text:String, completionHandler: @escaping (SearchGroupResponse) -> ()) {
+            var composer = URLComponents()
+            composer.scheme = "https"
+            composer.host = "api.vk.com"
+            composer.path = "/method/groups.search"
+            composer.queryItems = [
+                URLQueryItem(name: "q", value: text),
+                URLQueryItem(name: "type", value: "group"),
+                URLQueryItem(name: "sort", value: "0"),
+                URLQueryItem(name: "access_token", value: session.token),
+                URLQueryItem(name: "v", value: "5.8")
+            ]
+            
+            Alamofire.request(composer, method: .get).responseJSON {(groupsSearchList) in
+                let groupsSearch = try! JSONDecoder().decode(SearchGroupResponse.self, from: groupsSearchList.data!)
+                completionHandler(groupsSearch)
+            }
         }
-    }
-    
+        
 }
 
