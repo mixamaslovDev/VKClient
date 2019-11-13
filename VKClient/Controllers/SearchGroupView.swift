@@ -54,7 +54,7 @@ class SearchGroupTableView: UITableViewController, UISearchBarDelegate {
         let url = URL(string: groups[indexPath.row].photo100)
         
         cell.nameFindGroup.text = groups[indexPath.row].name
-        cell.imageFindGroup.kf.setImage(with: url)
+        cell.imageFindGroup.image.kf.setImage(with: url, options: [.cacheOriginalImage])
         return cell
     }
     

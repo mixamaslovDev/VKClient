@@ -12,14 +12,18 @@ import Alamofire
 
 class LogOutContoller: UIViewController {
     
-    
     @IBAction func logOutButton(_ sender: UIButton) {
+        
+        
         let url = "https://api.vk.com/oauth/logout"
         
         Alamofire.request(url, method: .get).responseJSON {(logOut) in
             Session.shared.token = nil
+    }
+    
+    
+            
 //            let friends = try! JSONDecoder().decode(FriendsResponse.self, from: friendsList.data!)
         }
     }
-}
 

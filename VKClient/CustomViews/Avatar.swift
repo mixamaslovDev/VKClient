@@ -10,18 +10,14 @@ import UIKit
     
 class AvatarView: UIView {
         
-        @IBInspectable var shadowColor: UIColor = .gray
-        @IBInspectable var shadowRadius: CGFloat = 0
-        @IBInspectable var shadowOpacity: Float = 1
         
-        @IBInspectable var image: UIImage = UIImage.empty {
+    @IBInspectable var image: UIImageView = UIImageView() {
             didSet {
                 setupView()
             }
         }
         
-        private let shadowView = UIView()
-        private let imageView = UIImageView()
+        private var imageView = UIImageView()
         
         override func awakeFromNib() {
             super.awakeFromNib()
@@ -30,26 +26,15 @@ class AvatarView: UIView {
         
         func setupView() {
             removeSubviews()
-            setupShadowView()
             setupImageView()
         }
         
         func removeSubviews() {
-            shadowView.removeFromSuperview()
             imageView.removeFromSuperview()
         }
         
-        func setupShadowView() {
-            shadowView.backgroundColor = .white
-            shadowView.layer.shadowColor = shadowColor.cgColor
-            shadowView.layer.shadowRadius = shadowRadius
-            shadowView.layer.shadowOpacity = shadowOpacity
-            shadowView.layer.masksToBounds = false
-            addSubview(shadowView)
-        }
-        
         func setupImageView() {
-            imageView.image = image
+            imageView = image
             imageView.layer.masksToBounds = true
             imageView.layer.borderColor = UIColor.gray.cgColor
             imageView.layer.borderWidth = 1
@@ -58,9 +43,6 @@ class AvatarView: UIView {
         
         override func layoutSubviews() {
             super.layoutSubviews()
-            
-            shadowView.frame = self.bounds
-            shadowView.layer.cornerRadius = shadowView.bounds.width / 2
             
             imageView.frame = self.bounds
             imageView.layer.cornerRadius = imageView.bounds.width / 2

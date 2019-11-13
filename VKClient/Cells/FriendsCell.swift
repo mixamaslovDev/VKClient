@@ -12,7 +12,8 @@ class FriendsCell: UITableViewCell {
     
     
 
-    @IBOutlet weak var userPhoto: UIImageView!
+    @IBOutlet weak var avatar: AvatarView!
+//    @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
 //    @IBOutlet weak var UserPhoto: AvatarView!
     
@@ -25,7 +26,7 @@ class FriendsCell: UITableViewCell {
             super.prepareForReuse()
             
             nameLabel.text = nil
-            userPhoto.image = nil
+//            userPhoto.image = nil
         }
         
 //        override func setHighlighted(_ highlighted: Bool, animated: Bool) {

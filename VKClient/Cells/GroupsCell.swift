@@ -10,13 +10,16 @@ import UIKit
 
 class GroupsCell: UITableViewCell {
     
+    
+    @IBOutlet weak var groupPhoto: AvatarView!
+    
     @IBOutlet weak var nameGroup: UILabel!
-    @IBOutlet weak var groupPhoto: UIImageView!
+
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         nameGroup.text = nil
-        groupPhoto.image = nil
+//        groupPhoto.image = nil
     }
 }

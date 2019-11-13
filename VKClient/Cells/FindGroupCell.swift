@@ -10,13 +10,14 @@ import UIKit
 
 class FindGroupCell: UITableViewCell {
     
+    @IBOutlet weak var imageFindGroup: AvatarView!
     @IBOutlet weak var nameFindGroup: UILabel!
-     @IBOutlet weak var imageFindGroup: UIImageView!
+//     @IBOutlet weak var imageFindGroup: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         nameFindGroup.text = nil
-        imageFindGroup.image = nil
+//        imageFindGroup.image = nil
     }
 }
