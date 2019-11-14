@@ -126,8 +126,8 @@
 				451ED5F3235663A90011EAB2 /* PhotosScroll.swift */,
 				45108F5F232D783A00895CB3 /* Groups.swift */,
 				45108F61232D788700895CB3 /* SearchGroupView.swift */,
-				45FBA22B2327F923001F4276 /* LoginViewController(old).swift */,
 				45715708237C605F0022355E /* LogOut.swift */,
+				45FBA22B2327F923001F4276 /* LoginViewController(old).swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

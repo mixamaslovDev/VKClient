@@ -15,15 +15,24 @@ class LogOutContoller: UIViewController {
     @IBAction func logOutButton(_ sender: UIButton) {
         
         
-        let url = "https://api.vk.com/oauth/logout"
+//        let url = "https://api.vk.com/oauth/logout"
+//        
+//        Alamofire.request(url, method: .get).responseJSON {(logOut) in
+//        }
+//        Session.shared.token = nil
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.diskCapacity = 0
+        URLCache.shared.memoryCapacity = 0
+        showEnterError()
         
-        Alamofire.request(url, method: .get).responseJSON {(logOut) in
-            Session.shared.token = nil
     }
     
-    
-            
-//            let friends = try! JSONDecoder().decode(FriendsResponse.self, from: friendsList.data!)
-        }
+    func showEnterError() {
+        let alert = UIAlertController(title: "Выход!", message: "Выполнен выход", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
+    
+}
 
