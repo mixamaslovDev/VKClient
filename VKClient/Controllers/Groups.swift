@@ -43,7 +43,6 @@ class GroupsTableView: UITableViewController {
         let url = URL(string: groups[indexPath.row].photo100)
         
         cell.nameGroup.text = groups[indexPath.row].name
-//        cell.groupPhoto.kf.setImage(with: url, options: [.cacheOriginalImage])
         cell.groupPhoto.image.kf.setImage(with: url, options: [.cacheOriginalImage])
         
         return cell

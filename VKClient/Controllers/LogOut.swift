@@ -7,32 +7,39 @@
 //
 
 import UIKit
-import Alamofire
-
 
 class LogOutContoller: UIViewController {
     
-    @IBAction func logOutButton(_ sender: UIButton) {
-        
-        
-//        let url = "https://api.vk.com/oauth/logout"
-//        
-//        Alamofire.request(url, method: .get).responseJSON {(logOut) in
-//        }
-//        Session.shared.token = nil
-        URLCache.shared.removeAllCachedResponses()
-        URLCache.shared.diskCapacity = 0
-        URLCache.shared.memoryCapacity = 0
-        showEnterError()
+    
+    @IBAction func logOut(_ sender: UIButton)  {
+        clear(cache: true, cookies: true)
+        Session.shared.token = nil
+        Session.shared.userId = nil
         
     }
     
-    func showEnterError() {
-        let alert = UIAlertController(title: "Выход!", message: "Выполнен выход", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(action)
-        present(alert, animated: true)
+    func clear(cache: Bool, cookies: Bool) {
+        if cache { clearCache() }
+        if cookies { clearCookies() }
     }
+
+    fileprivate func clearCache() {
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.diskCapacity = 0
+        URLCache.shared.memoryCapacity = 0
+        
+    }
+
+    fileprivate func clearCookies() {
+        let cookieStorage = HTTPCookieStorage.shared
+
+        guard let cookies = cookieStorage.cookies else { return }
+
+        for cookie in cookies {
+            cookieStorage.deleteCookie(cookie)
+        }
+    }
+    
     
 }
 

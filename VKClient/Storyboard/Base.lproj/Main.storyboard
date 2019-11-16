@@ -11,21 +11,25 @@
         <!--Выход-->
         <scene sceneID="o5a-hK-qgn">
             <objects>
-                <viewController id="W5l-V7-811" customClass="LogOutController" sceneMemberID="viewController">
+                <viewController id="W5l-V7-811" customClass="LogOutContoller" customModule="VKClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QlF-yS-VvD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6r-JJ-o4k">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6r-JJ-o4k">
                                 <rect key="frame" x="184" y="433" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="logOutButton:" destination="W5l-V7-811" eventType="touchUpInside" id="RUC-0z-XrU"/>
+                                    <action selector="logOut:" destination="W5l-V7-811" eventType="touchUpInside" id="s3o-Z0-koq"/>
+                                    <segue destination="xzE-zs-WXD" kind="show" id="i1G-qb-rJ8"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="U6r-JJ-o4k" firstAttribute="leading" secondItem="PQq-vj-SSX" secondAttribute="leading" constant="184" id="MyW-h6-I2H"/>
+                            <constraint firstItem="U6r-JJ-o4k" firstAttribute="top" secondItem="PQq-vj-SSX" secondAttribute="top" constant="389" id="ofK-Ro-NyU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PQq-vj-SSX"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Выход" image="clear" catalog="system" id="O90-cQ-vFY"/>
@@ -38,7 +42,7 @@
         <!--Login View-->
         <scene sceneID="XDo-gj-TOu">
             <objects>
-                <viewController id="xzE-zs-WXD" customClass="LoginView" customModule="VKClient" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" modalPresentationStyle="fullScreen" id="xzE-zs-WXD" customClass="LoginView" customModule="VKClient" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1NL-ZT-eyl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,6 +65,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XSa-q3-oXG"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3yI-mZ-hBQ"/>
                     <connections>
                         <outlet property="webView" destination="AGd-hR-UIS" id="FXQ-Vc-GT6"/>
                     </connections>
@@ -177,7 +182,7 @@
                         <segue destination="jM7-9d-CBk" kind="relationship" relationship="viewControllers" id="a4c-h9-j0P"/>
                         <segue destination="dPC-vE-pPK" kind="relationship" relationship="viewControllers" id="HOT-ou-mBM"/>
                         <segue destination="K1k-VW-sST" kind="relationship" relationship="viewControllers" id="vW2-bV-UJF"/>
-                        <segue destination="W5l-V7-811" kind="relationship" relationship="viewControllers" id="K8z-rw-nzQ"/>
+                        <segue destination="W5l-V7-811" kind="relationship" relationship="viewControllers" id="y95-Nz-JBw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSV-84-bBm" userLabel="First Responder" sceneMemberID="firstResponder"/>

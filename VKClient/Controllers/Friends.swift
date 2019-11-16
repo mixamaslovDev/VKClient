@@ -100,7 +100,6 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
             let url = URL(string: filteredUsers[indexPath.row].photo_50)
             cell.nameLabel.text = filteredUsers[indexPath.row].firstName + " " + filteredUsers[indexPath.row].lastName
             cell.avatar.image.kf.setImage(with: url, options: [.cacheOriginalImage])
-//            cell.userPhoto.kf.setImage(with: url)
             
         } else {
             let userKey = userSectionTitles[indexPath.section]
@@ -108,7 +107,7 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
                 let url = URL(string: userValues[indexPath.row].photo_50)
                 cell.nameLabel.text = userValues[indexPath.row].firstName + " " + userValues[indexPath.row].lastName
                 cell.avatar.image.kf.setImage(with: url, options: [.cacheOriginalImage])
-//                cell.userPhoto.kf.setImage(with: url, options: [.cacheOriginalImage])
+
                
               
                 
