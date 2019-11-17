@@ -35,6 +35,7 @@
 		45DD4E6E233F9F0600C8B112 /* LikeContol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DD4E6D233F9F0600C8B112 /* LikeContol.swift */; };
 		45EE59852358C36100CAB60D /* FriendsSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EE59842358C36100CAB60D /* FriendsSearch.swift */; };
 		45EEF5AD23648B5A00503BEF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEF5AC23648B5A00503BEF /* LoginView.swift */; };
+		45F2B2ED2381E3470084CC51 /* RealmDeleting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F2B2EC2381E3470084CC51 /* RealmDeleting.swift */; };
 		45FA69762332E0AD00FB6356 /* GroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA69752332E0AD00FB6356 /* GroupsCell.swift */; };
 		45FBA22A2327F923001F4276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBA2292327F923001F4276 /* AppDelegate.swift */; };
 		45FBA22C2327F923001F4276 /* LoginViewController(old).swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBA22B2327F923001F4276 /* LoginViewController(old).swift */; };
@@ -71,6 +72,7 @@
 		45DD4E6D233F9F0600C8B112 /* LikeContol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeContol.swift; sourceTree = "<group>"; };
 		45EE59842358C36100CAB60D /* FriendsSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsSearch.swift; sourceTree = "<group>"; };
 		45EEF5AC23648B5A00503BEF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		45F2B2EC2381E3470084CC51 /* RealmDeleting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDeleting.swift; sourceTree = "<group>"; };
 		45FA69752332E0AD00FB6356 /* GroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsCell.swift; sourceTree = "<group>"; };
 		45FBA2262327F923001F4276 /* VKClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FBA2292327F923001F4276 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				455A46A723807ECB00424162 /* RealmAdding.swift */,
+				45F2B2EC2381E3470084CC51 /* RealmDeleting.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				455A46A823807ECB00424162 /* RealmAdding.swift in Sources */,
 				45FBA22A2327F923001F4276 /* AppDelegate.swift in Sources */,
 				45706ACD2360E25E005833D2 /* Session.swift in Sources */,
+				45F2B2ED2381E3470084CC51 /* RealmDeleting.swift in Sources */,
 				4518EED3236C92180084645A /* Photo.swift in Sources */,
 				455A46A523807E8000424162 /* VkRequests.swift in Sources */,
 				451ED5F4235663A90011EAB2 /* PhotosScroll.swift in Sources */,

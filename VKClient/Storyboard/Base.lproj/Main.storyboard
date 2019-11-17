@@ -16,9 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6r-JJ-o4k">
-                                <rect key="frame" x="184" y="433" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нажмите, чтобы выйти" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yl-NI-d61">
+                                <rect key="frame" x="77" y="316" width="260" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6r-JJ-o4k">
+                                <rect key="frame" x="156" y="398" width="154" height="100"/>
+                                <state key="normal" title="Button" image="logout"/>
                                 <connections>
                                     <action selector="logOut:" destination="W5l-V7-811" eventType="touchUpInside" id="s3o-Z0-koq"/>
                                     <segue destination="xzE-zs-WXD" kind="show" id="i1G-qb-rJ8"/>
@@ -27,8 +33,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="U6r-JJ-o4k" firstAttribute="leading" secondItem="PQq-vj-SSX" secondAttribute="leading" constant="184" id="MyW-h6-I2H"/>
-                            <constraint firstItem="U6r-JJ-o4k" firstAttribute="top" secondItem="PQq-vj-SSX" secondAttribute="top" constant="389" id="ofK-Ro-NyU"/>
+                            <constraint firstItem="2yl-NI-d61" firstAttribute="top" secondItem="PQq-vj-SSX" secondAttribute="top" constant="272" id="BgZ-Bc-9YE"/>
+                            <constraint firstItem="2yl-NI-d61" firstAttribute="leading" secondItem="PQq-vj-SSX" secondAttribute="leading" constant="77" id="I10-6j-VxV"/>
+                            <constraint firstItem="U6r-JJ-o4k" firstAttribute="leading" secondItem="PQq-vj-SSX" secondAttribute="leading" constant="156" id="Izo-gV-hxa"/>
+                            <constraint firstItem="U6r-JJ-o4k" firstAttribute="top" secondItem="2yl-NI-d61" secondAttribute="bottom" constant="52" id="L6J-ma-6l0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQq-vj-SSX"/>
                     </view>
@@ -585,6 +593,7 @@
         <image name="VKLaunch" width="80" height="47"/>
         <image name="clear" catalog="system" width="64" height="56"/>
         <image name="login" width="250" height="54"/>
+        <image name="logout" width="100" height="100"/>
         <image name="newsFeedIcon" width="30" height="30"/>
     </resources>
 </document>
