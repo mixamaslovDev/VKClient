@@ -9,18 +9,17 @@
 import Alamofire
 
 class VkApi {
-    let realm = ReamlAdd()
-    
+    let realm = RealmDataBase()
     func requestVK<T:Decodable> (composer: URLComponents, completionHandler: @escaping (T) -> ()) {
         
         Alamofire.request(composer, method: .get).responseJSON {(data) in
             let request = try! JSONDecoder().decode(T.self, from: data.data!)
             
             if T.self == FriendsResponse.self {
-                self.realm.saveUsersData(request as! FriendsResponse)
+            self.realm.saveUsersData(request as! UserItem)
             }
             else {
-                self.realm.saveGroupsData(request as! GroupsResponse)
+            self.realm.saveGroupsData(request as! GroupsItem)
             }
             completionHandler(request)
         }
@@ -61,6 +60,7 @@ class VkApi {
         ]
         
         requestVK(composer: composer, completionHandler: completionHandler)
+        
         
     }
     

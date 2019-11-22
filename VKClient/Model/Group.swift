@@ -27,7 +27,8 @@ import RealmSwift
 // MARK: - GroupsResponse
 class GroupsResponse: Object, Codable {
     @objc dynamic var response: ResponseGroups?
-
+    
+    
 //    init(response: ResponseGroups) {
 //        self.response = response
 //    }
@@ -70,6 +71,10 @@ class GroupsItem: Object, Codable {
         case photo100 = "photo_100"
         case photo200 = "photo_200"
     }
+    
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
 //
 //    init(id: Int, name: String, screenName: String, isClosed: Int, type: String, isAdmin: Int, isMember: Int, isAdvertiser: Int, photo50: String, photo100: String, photo200: String) {
 //        self.id = id

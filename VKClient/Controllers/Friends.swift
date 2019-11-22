@@ -14,6 +14,8 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableFriends: UITableView!
     
+//    var getUsers = RealmDataBase.shared.getUsers()
+//    var user = Results<UserItem>
     var users = List <UserItem>()
     var usersDictionary = [String: [UserItem]]()
     var filteredUsers = [UserItem]()

@@ -40,6 +40,7 @@ class GroupsTableView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groupCells", for: indexPath) as! GroupsCell
+       
         let url = URL(string: groups[indexPath.row].photo100)
         
         cell.nameGroup.text = groups[indexPath.row].name

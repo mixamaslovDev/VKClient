@@ -32,17 +32,16 @@ var allImages = users.flatMap({$0.photo})
 
 
 
-class FriendsResponse: Object, Codable {
-    @objc dynamic var response: ResponseFriends?
-    
-//    convenience init(response: ResponseFriends) {
-//        self.init()
-//        self.response = response
+class FriendsResponse: Codable {
+     var response: ResponseFriends?
+//    override class func primaryKey() -> String? {
+//        return "id"
 //    }
+    
 }
 
 // MARK: - Response
-class ResponseFriends: Object, Codable {
+class ResponseFriends: Codable {
     @objc dynamic var count = 0
     var items = List<UserItem>()
     
@@ -70,6 +69,10 @@ class UserItem: Object, Codable {
         case lastName = "last_name"
         case domain, photo_50, online
         case trackCode = "track_code"
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
     
 //    convenience init(id: Int, firstName: String, lastName: String, domain: String, photo_50: String, online: Int, trackCode: String) {

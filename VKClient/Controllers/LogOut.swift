@@ -12,15 +12,26 @@ import RealmSwift
 
 class LogOutContoller: UIViewController {
     
-    let realm = RealmDel()
-    
     @IBAction func logOut(_ sender: UIButton)  {
         alertExit()
-//        clear(cache: true, cookies: true)
-//        Session.shared.token = nil
-//        Session.shared.userId = nil
-//        realm.deleteData()
-//        clean()
+    }
+    
+    func alertExit() {
+        
+        let alert = UIAlertController(title: "Выход из аккаунта", message: "Вы уверены, что хотите выйти?", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Выйти", style: UIAlertAction.Style.default, handler: { action in
+            self.clear(cache: true, cookies: true)
+            Session.shared.token = nil
+            Session.shared.userId = nil
+            RealmDataBase.shared.deleteData()
+            self.clean()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     func clear(cache: Bool, cookies: Bool) {
@@ -53,25 +64,5 @@ class LogOutContoller: UIViewController {
             }
         }
     }
-    
-    func alertExit() {
-        
-        let alert = UIAlertController(title: "Выход из аккаунта", message: "Вы уверены, что хотите выйти?", preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Выйти", style: UIAlertAction.Style.default, handler: { action in
-            self.clear(cache: true, cookies: true)
-            Session.shared.token = nil
-            Session.shared.userId = nil
-            self.realm.deleteData()
-            self.clean()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
-    
 }
 

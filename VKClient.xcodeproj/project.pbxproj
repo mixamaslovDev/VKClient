@@ -24,8 +24,8 @@
 		4545A90F2332C0B500597855 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4545A90E2332C0B500597855 /* User.swift */; };
 		4545A9112332C0C100597855 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4545A9102332C0C100597855 /* Group.swift */; };
 		4545A9132332C95E00597855 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4545A9122332C95E00597855 /* FriendsCell.swift */; };
-		455A46A523807E8000424162 /* VkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A46A423807E8000424162 /* VkRequests.swift */; };
-		455A46A823807ECB00424162 /* RealmAdding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A46A723807ECB00424162 /* RealmAdding.swift */; };
+		455A46A523807E8000424162 /* VKRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A46A423807E8000424162 /* VKRequests.swift */; };
+		455A46A823807ECB00424162 /* RealmDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A46A723807ECB00424162 /* RealmDataBase.swift */; };
 		45706ACD2360E25E005833D2 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45706ACC2360E25E005833D2 /* Session.swift */; };
 		45715709237C605F0022355E /* LogOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45715708237C605F0022355E /* LogOut.swift */; };
 		458CA34F234F6E4D0094017B /* NewsFeedPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458CA34E234F6E4D0094017B /* NewsFeedPost.xib */; };
@@ -35,7 +35,6 @@
 		45DD4E6E233F9F0600C8B112 /* LikeContol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DD4E6D233F9F0600C8B112 /* LikeContol.swift */; };
 		45EE59852358C36100CAB60D /* FriendsSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EE59842358C36100CAB60D /* FriendsSearch.swift */; };
 		45EEF5AD23648B5A00503BEF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EEF5AC23648B5A00503BEF /* LoginView.swift */; };
-		45F2B2ED2381E3470084CC51 /* RealmDeleting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F2B2EC2381E3470084CC51 /* RealmDeleting.swift */; };
 		45FA69762332E0AD00FB6356 /* GroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA69752332E0AD00FB6356 /* GroupsCell.swift */; };
 		45FBA22A2327F923001F4276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBA2292327F923001F4276 /* AppDelegate.swift */; };
 		45FBA22C2327F923001F4276 /* LoginViewController(old).swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBA22B2327F923001F4276 /* LoginViewController(old).swift */; };
@@ -61,8 +60,8 @@
 		4545A90E2332C0B500597855 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4545A9102332C0C100597855 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4545A9122332C95E00597855 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
-		455A46A423807E8000424162 /* VkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkRequests.swift; sourceTree = "<group>"; };
-		455A46A723807ECB00424162 /* RealmAdding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAdding.swift; sourceTree = "<group>"; };
+		455A46A423807E8000424162 /* VKRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKRequests.swift; sourceTree = "<group>"; };
+		455A46A723807ECB00424162 /* RealmDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataBase.swift; sourceTree = "<group>"; };
 		45706ACC2360E25E005833D2 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		45715708237C605F0022355E /* LogOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOut.swift; sourceTree = "<group>"; };
 		458CA34E234F6E4D0094017B /* NewsFeedPost.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedPost.xib; sourceTree = "<group>"; };
@@ -72,7 +71,6 @@
 		45DD4E6D233F9F0600C8B112 /* LikeContol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeContol.swift; sourceTree = "<group>"; };
 		45EE59842358C36100CAB60D /* FriendsSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsSearch.swift; sourceTree = "<group>"; };
 		45EEF5AC23648B5A00503BEF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		45F2B2EC2381E3470084CC51 /* RealmDeleting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDeleting.swift; sourceTree = "<group>"; };
 		45FA69752332E0AD00FB6356 /* GroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsCell.swift; sourceTree = "<group>"; };
 		45FBA2262327F923001F4276 /* VKClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45FBA2292327F923001F4276 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,7 +160,7 @@
 		455A46A323807E4400424162 /* VKAPI */ = {
 			isa = PBXGroup;
 			children = (
-				455A46A423807E8000424162 /* VkRequests.swift */,
+				455A46A423807E8000424162 /* VKRequests.swift */,
 			);
 			path = VKAPI;
 			sourceTree = "<group>";
@@ -170,8 +168,7 @@
 		455A46A623807EB300424162 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				455A46A723807ECB00424162 /* RealmAdding.swift */,
-				45F2B2EC2381E3470084CC51 /* RealmDeleting.swift */,
+				455A46A723807ECB00424162 /* RealmDataBase.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -400,12 +397,11 @@
 				45447047233D23A80012CD97 /* UIImage.swift in Sources */,
 				4545A90F2332C0B500597855 /* User.swift in Sources */,
 				45144C9523338FF10000D758 /* FindGroupCell.swift in Sources */,
-				455A46A823807ECB00424162 /* RealmAdding.swift in Sources */,
+				455A46A823807ECB00424162 /* RealmDataBase.swift in Sources */,
 				45FBA22A2327F923001F4276 /* AppDelegate.swift in Sources */,
 				45706ACD2360E25E005833D2 /* Session.swift in Sources */,
-				45F2B2ED2381E3470084CC51 /* RealmDeleting.swift in Sources */,
 				4518EED3236C92180084645A /* Photo.swift in Sources */,
-				455A46A523807E8000424162 /* VkRequests.swift in Sources */,
+				455A46A523807E8000424162 /* VKRequests.swift in Sources */,
 				451ED5F4235663A90011EAB2 /* PhotosScroll.swift in Sources */,
 				451A883E234F832500586428 /* PostCell.swift in Sources */,
 				45108F5E232D73EA00895CB3 /* Profile.swift in Sources */,
