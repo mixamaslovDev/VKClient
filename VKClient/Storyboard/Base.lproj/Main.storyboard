@@ -27,7 +27,7 @@
                                 <state key="normal" title="Button" image="logout"/>
                                 <connections>
                                     <action selector="logOut:" destination="W5l-V7-811" eventType="touchUpInside" id="s3o-Z0-koq"/>
-                                    <segue destination="xzE-zs-WXD" kind="show" id="i1G-qb-rJ8"/>
+                                    <segue destination="xzE-zs-WXD" kind="show" id="qb5-5o-LPJ"/>
                                 </connections>
                             </button>
                         </subviews>

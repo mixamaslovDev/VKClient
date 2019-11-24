@@ -25,8 +25,8 @@ import UIKit
 import Foundation
 import RealmSwift
 // MARK: - GroupsResponse
-class GroupsResponse: Object, Codable {
-    @objc dynamic var response: ResponseGroups?
+class GroupsResponse: Codable {
+    dynamic var response: ResponseGroups?
     
     
 //    init(response: ResponseGroups) {
@@ -35,8 +35,8 @@ class GroupsResponse: Object, Codable {
 }
 
 // MARK: - Response
-class ResponseGroups: Object, Codable {
-    @objc dynamic var count: Int = 0
+class ResponseGroups: Codable {
+    dynamic var count: Int = 0
    var items = List <GroupsItem>()
 
 //    init(count: Int, items: [GroupsItem]) {
@@ -72,9 +72,9 @@ class GroupsItem: Object, Codable {
         case photo200 = "photo_200"
     }
     
-//    override static func primaryKey() -> String? {
-//        return "id"
-//    }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 //
 //    init(id: Int, name: String, screenName: String, isClosed: Int, type: String, isAdmin: Int, isMember: Int, isAdvertiser: Int, photo50: String, photo100: String, photo200: String) {
 //        self.id = id

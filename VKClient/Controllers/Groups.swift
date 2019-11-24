@@ -11,7 +11,9 @@ import RealmSwift
 
 class GroupsTableView: UITableViewController {
     
-    var groups = List<GroupsItem>()
+    var groups = RealmDataBase.shared.getGroups()
+    var groupsRequest = List<GroupsItem>()
+    var token: NotificationToken?
     
 //    @IBAction func returnToMyGroups(unwindSegue: UIStoryboardSegue) {
 //        if unwindSegue.identifier == "addGroup" {
@@ -28,10 +30,54 @@ class GroupsTableView: UITableViewController {
     
     override func viewDidLoad() {
         vk.getGroups { [weak self] groups in
-                    self?.groups = groups.response!.items
+                    self?.groupsRequest = groups.response!.items
                     self?.tableView.reloadData()
                 }
+        self.notificatoinRealm()
        }
+    
+    
+    // Realm Notification
+    
+    fileprivate func notificatoinRealm() {
+        self.token = groups.observe {  (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(let results):
+                print(results)
+            case let .update(results, deletions, insertions, modifications):
+                self.insertInTable(indexPath: insertions.map{IndexPath(row: $0, section: 0)})
+                 self.deleteInTable(indexPath: deletions.map{IndexPath(row: $0, section: 0)})
+                 self.updateInTable(indexPath: modifications.map{IndexPath(row: $0, section: 0)})
+                print(results)
+            case .error(let error):
+                print(error)
+            }
+            print("Data is changed")
+        }
+        
+    }
+    
+    // Functions for update information on tableview
+    
+    func insertInTable(indexPath: [IndexPath]) {
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPath, with: .none)
+        tableView.endUpdates()
+    }
+    
+    func deleteInTable(indexPath: [IndexPath]) {
+        tableView.beginUpdates()
+        tableView.deleteRows(at: indexPath, with: .none)
+        tableView.endUpdates()
+    }
+    
+    
+    func updateInTable(indexPath: [IndexPath]) {
+        tableView.beginUpdates()
+        tableView.reloadRows(at: indexPath, with: .none)
+        tableView.endUpdates()
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -53,11 +99,11 @@ class GroupsTableView: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            groups.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
 
 }

@@ -14,9 +14,8 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableFriends: UITableView!
     
-//    var getUsers = RealmDataBase.shared.getUsers()
-//    var user = Results<UserItem>
-    var users = List <UserItem>()
+    let users = RealmDataBase.shared.getUsers()
+    var usersRequest = List<UserItem>()
     var usersDictionary = [String: [UserItem]]()
     var filteredUsers = [UserItem]()
     var userSectionTitles = [String]()
@@ -35,39 +34,40 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setKeysForSections()
         setSearchBar()
+        vk.getFriends { [weak self] users in
+            self?.usersRequest = users.response!.items
+            self?.tableView.reloadData()
+        }
     }
+    
     
     // Set Search Bar on FriendsView
     
     fileprivate func setSearchBar() {
-    searchController.searchResultsUpdater = self
-           searchController.obscuresBackgroundDuringPresentation = false
-           searchController.searchBar.placeholder = "Поиск"
-           navigationItem.searchController = searchController
-           definesPresentationContext = false
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
     }
     
     
     // Set Sections on FriendsView
     
     fileprivate func setKeysForSections() {
-        vk.getFriends { [self] friends in
-            self.users = friends.response!.items
-            for name in self.users {
-                let usrKey = String(name.lastName.prefix(1))
-                if var usrValues = self.usersDictionary[usrKey] {
-                    usrValues.append(name)
-                    self.usersDictionary[usrKey] = usrValues
-                } else {
-                    self.usersDictionary[usrKey] = [name]
-                }
+        for name in self.users {
+            let usrKey = String(name.lastName.prefix(1))
+            if var usrValues = self.usersDictionary[usrKey] {
+                usrValues.append(name)
+                self.usersDictionary[usrKey] = usrValues
+            } else {
+                self.usersDictionary[usrKey] = [name]
             }
-            self.userSectionTitles = [String](self.usersDictionary.keys)
-            self.userSectionTitles = self.userSectionTitles.sorted(by: { $0 < $1})
-            self.tableFriends.reloadData()
         }
+        self.userSectionTitles = [String](self.usersDictionary.keys)
+        self.userSectionTitles = self.userSectionTitles.sorted(by: { $0 < $1})
+        self.tableFriends.reloadData()
     }
-    
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,9 +109,9 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
                 let url = URL(string: userValues[indexPath.row].photo_50)
                 cell.nameLabel.text = userValues[indexPath.row].firstName + " " + userValues[indexPath.row].lastName
                 cell.avatar.image.kf.setImage(with: url, options: [.cacheOriginalImage])
-
-               
-              
+                
+                
+                
                 
             }
         }

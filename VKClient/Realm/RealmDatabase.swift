@@ -10,13 +10,11 @@ import RealmSwift
 
 class RealmDataBase {
     
-
     let realm = try! Realm()
     static let shared = RealmDataBase()
     
-    func saveUsersData(_ data: UserItem) {
+    func saveUsersData(_ data: List<UserItem>) {
         do {
-            print(Realm.Configuration.defaultConfiguration.fileURL as Any)
             try realm.write {
                 realm.add(data, update: .modified)
             }
@@ -25,9 +23,8 @@ class RealmDataBase {
         }
     }
     
-    func saveGroupsData(_ data: GroupsItem) {
+    func saveGroupsData(_ data: List<GroupsItem>) {
         do {
-            print(Realm.Configuration.defaultConfiguration.fileURL as Any)
             try realm.write {
                 realm.add(data, update: .modified)
             }
@@ -37,20 +34,18 @@ class RealmDataBase {
     }
     
     
-//    func getUsers() -> [FriendsResponse] {
-//
-//        return Array(realm.objects(FriendsResponse.self))
-//    }
+    func getUsers() -> Results<UserItem> {
+        return realm.objects(UserItem.self)
+    }
     
-    func getGroups() -> Results <GroupsItem> {
-        
+    func getGroups() -> Results<GroupsItem> {
         return realm.objects(GroupsItem.self)
     }
     
     func deleteData() {
         try! realm.write {
             realm.deleteAll()
-            
         }
     }
+    
 }

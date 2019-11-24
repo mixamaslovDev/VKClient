@@ -7,21 +7,24 @@
 //
 
 import Alamofire
+import RealmSwift
 
 class VkApi {
     let realm = RealmDataBase()
     func requestVK<T:Decodable> (composer: URLComponents, completionHandler: @escaping (T) -> ()) {
         
         Alamofire.request(composer, method: .get).responseJSON {(data) in
-            let request = try! JSONDecoder().decode(T.self, from: data.data!)
             
-            if T.self == FriendsResponse.self {
-            self.realm.saveUsersData(request as! UserItem)
-            }
-            else {
-            self.realm.saveGroupsData(request as! GroupsItem)
-            }
-            completionHandler(request)
+            do {  let request = try JSONDecoder().decode(T.self, from: data.data!)
+                
+                if T.self == FriendsResponse.self {
+                    self.realm.saveUsersData((request as! FriendsResponse).response!.items)
+                }
+                else {
+                    self.realm.saveGroupsData((request as! GroupsResponse).response!.items)
+                }
+                completionHandler(request)
+            } catch { print(error) }
         }
         
     }
