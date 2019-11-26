@@ -14,7 +14,7 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var tableFriends: UITableView!
     
-    let users = RealmDataBase.shared.getUsers()
+    var users : Results<UserItem>!
     var usersRequest = List<UserItem>()
     var usersDictionary = [String: [UserItem]]()
     var filteredUsers = [UserItem]()
@@ -32,12 +32,13 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setKeysForSections()
-        setSearchBar()
         vk.getFriends { [weak self] users in
             self?.usersRequest = users.response!.items
             self?.tableView.reloadData()
         }
+        self.users = RealmDataBase.shared.getUsers()
+        setKeysForSections()
+        setSearchBar()
     }
     
     

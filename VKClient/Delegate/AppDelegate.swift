@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let conf = Realm.Configuration(schemaVersion: 6)
+        let conf = Realm.Configuration(schemaVersion: 7)
         Realm.Configuration.defaultConfiguration = conf
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
 

@@ -21,11 +21,15 @@ class LogOutContoller: UIViewController {
         let alert = UIAlertController(title: "Выход из аккаунта", message: "Вы уверены, что хотите выйти?", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Выйти", style: UIAlertAction.Style.default, handler: { action in
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "logout", sender: self);
+            }
             self.clear(cache: true, cookies: true)
             Session.shared.token = nil
             Session.shared.userId = nil
             RealmDataBase.shared.deleteData()
             self.clean()
+
         }))
         
         alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))

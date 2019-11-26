@@ -24,14 +24,14 @@ class RealmDataBase {
     }
     
     func saveGroupsData(_ data: List<GroupsItem>) {
-        do {
-            try realm.write {
+//        do {
+            try! realm.write {
                 realm.add(data, update: .modified)
             }
-        } catch {
-            print(error)
+//        } catch {
+//            print(error)
         }
-    }
+//    }
     
     
     func getUsers() -> Results<UserItem> {

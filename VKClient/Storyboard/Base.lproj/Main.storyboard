@@ -27,7 +27,7 @@
                                 <state key="normal" title="Button" image="logout"/>
                                 <connections>
                                     <action selector="logOut:" destination="W5l-V7-811" eventType="touchUpInside" id="s3o-Z0-koq"/>
-                                    <segue destination="xzE-zs-WXD" kind="show" id="qb5-5o-LPJ"/>
+                                    <segue destination="xzE-zs-WXD" kind="show" identifier="logout" id="qb5-5o-LPJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,7 +50,7 @@
         <!--Login View-->
         <scene sceneID="XDo-gj-TOu">
             <objects>
-                <viewController storyboardIdentifier="login" modalPresentationStyle="fullScreen" id="xzE-zs-WXD" customClass="LoginView" customModule="VKClient" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xzE-zs-WXD" customClass="LoginView" customModule="VKClient" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1NL-ZT-eyl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
