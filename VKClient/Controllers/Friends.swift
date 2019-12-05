@@ -12,9 +12,11 @@ import RealmSwift
 
 class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var tableFriends: UITableView!
     
+    @IBOutlet weak var tableFriends: UITableView!
+    // variable for realm
     var users : Results<UserItem>!
+    // variable for only request
     var usersRequest = List<UserItem>()
     var usersDictionary = [String: [UserItem]]()
     var filteredUsers = [UserItem]()
@@ -34,11 +36,13 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         vk.getFriends { [weak self] users in
             self?.usersRequest = users.response!.items
-            self?.tableView.reloadData()
         }
-        self.users = RealmDataBase.shared.getUsers()
-        setKeysForSections()
-        setSearchBar()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.setSearchBar()
+            self.users = RealmDataBase.shared.getUsers()
+            self.setKeysForSections()
+            self.tableView.reloadData()
+        })
     }
     
     
@@ -56,7 +60,7 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     // Set Sections on FriendsView
     
     fileprivate func setKeysForSections() {
-        for name in self.users {
+        for name in self.usersRequest {
             let usrKey = String(name.lastName.prefix(1))
             if var usrValues = self.usersDictionary[usrKey] {
                 usrValues.append(name)
@@ -88,7 +92,7 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
     
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredUsers = users.filter { (user: UserItem) -> Bool in
+        filteredUsers = usersRequest.filter { (user: UserItem) -> Bool in
             return user.lastName.lowercased().contains(searchText.lowercased())
         }
         
@@ -152,15 +156,14 @@ class FriendsTableView: UITableViewController, UITextFieldDelegate {
             
             
             if isFiltering {
-                //                let url = URL(string: filteredUsers[index].photo_50)
                 destinationController.navigationItem.title = filteredUsers[index].firstName + " " + filteredUsers[index].lastName
-                //                destinationController.photosUser.kf.setImage(with: url)
+                idVK = filteredUsers[index].id
+                
                 
             } else {
-                //                let url = URL(string: usersInSection[index].photo_50)
                 if usersInSection.count > index {
                     destinationController.navigationItem.title = usersInSection[index].firstName + " " + usersInSection[index].lastName
-                    //                    destinationController.photosUser.kf.setImage(with: url)
+                    idVK = usersInSection[index].id
                 }
             }
         }

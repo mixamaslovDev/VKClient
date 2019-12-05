@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Session {
     private init() {}
     static let shared = Session()
@@ -17,4 +16,7 @@ class Session {
     var userId: String?
     
 }
- let vk = VkApi()
+
+// global values
+let vk = VkApi()
+var idVK = Int()

@@ -12,7 +12,7 @@ import RealmSwift
 class GroupsTableView: UITableViewController {
     
     var groups: Results<GroupsItem>!
-    var groupsRequest = List<GroupsItem>()
+//    var groupsRequest = List<GroupsItem>()
     var token: NotificationToken?
     
     //    @IBAction func returnToMyGroups(unwindSegue: UIStoryboardSegue) {
@@ -29,9 +29,13 @@ class GroupsTableView: UITableViewController {
     //    }
     
     override func viewDidLoad() {
+        super .viewDidLoad()
         vk.getGroups { groups in }
-        self.groups = RealmDataBase.shared.getGroups()
+        groups = RealmDataBase.shared.getGroups()
+//        self.groups = RealmDataBase.shared.getGroups()
         self.notificatoinRealm()
+        self.tableView.reloadData()
+//        print(groups)
     }
     
     
@@ -39,18 +43,20 @@ class GroupsTableView: UITableViewController {
     
     fileprivate func notificatoinRealm() {
         self.token = groups?.observe {  (changes: RealmCollectionChange) in
+            self.groups = RealmDataBase.shared.getGroups()
             switch changes {
             case .initial(let results):
                 print(results)
             case let .update(results, deletions, insertions, modifications):
-                self.insertInTable(indexPath: insertions.map{IndexPath(row: $0, section: 0)})
-                self.deleteInTable(indexPath: deletions.map{IndexPath(row: $0, section: 0)})
-                self.updateInTable(indexPath: modifications.map{IndexPath(row: $0, section: 0)})
-                print(results)
+                self.tableView.reloadData()
+//                self.insertInTable(indexPath: insertions.map{IndexPath(row: $0, section: 0)})
+//                self.deleteInTable(indexPath: deletions.map{IndexPath(row: $0, section: 0)})
+//                self.updateInTable(indexPath: modifications.map{IndexPath(row: $0, section: 0)})
+//                print(results)
             case .error(let error):
                 print(error)
             }
-            print("Data is changed")
+//            print("Data is changed")
         }
         
     }

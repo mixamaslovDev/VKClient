@@ -10,6 +10,7 @@ import Alamofire
 import RealmSwift
 
 class VkApi {
+    
     let realm = RealmDataBase()
     func requestVK<T:Decodable> (composer: URLComponents, completionHandler: @escaping (T) -> ()) {
         
@@ -20,10 +21,12 @@ class VkApi {
                 if T.self == FriendsResponse.self {
                     self.realm.saveUsersData((request as! FriendsResponse).response!.items)
                 }
-                else {
+                if  T.self == GroupsResponse.self{
                     self.realm.saveGroupsData((request as! GroupsResponse).response!.items)
                 }
-                completionHandler(request)
+                else {
+                    completionHandler(request)
+                }
             } catch { print(error) }
         }
         
@@ -52,18 +55,15 @@ class VkApi {
         var composer = URLComponents()
         composer.scheme = "https"
         composer.host = "api.vk.com"
-        composer.path = "/method/groups.get"
+        composer.path = "/method/photos.get"
         composer.queryItems = [
-            URLQueryItem(name: "user_id", value: Session.shared.userId),
+            URLQueryItem(name: "owner_id", value: String(idVK)),
             URLQueryItem(name: "album_id", value: "profile"),
-            URLQueryItem(name: "rev", value: "1"),
-            URLQueryItem(name: "count", value: "5"),
+            URLQueryItem(name: "rev", value: "0"),
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: "5.8")
         ]
-        
         requestVK(composer: composer, completionHandler: completionHandler)
-        
         
     }
     
@@ -84,7 +84,7 @@ class VkApi {
         
     }
     
-    func getGroupsSearch(text:String, completionHandler: @escaping (SearchGroupResponse) -> ()) {
+    func getGroupsSearch(offset: Int, text: String, completionHandler: @escaping (SearchGroupResponse) -> ()) {
         var composer = URLComponents()
         composer.scheme = "https"
         composer.host = "api.vk.com"
@@ -93,12 +93,14 @@ class VkApi {
             URLQueryItem(name: "q", value: text),
             URLQueryItem(name: "type", value: "group"),
             URLQueryItem(name: "sort", value: "0"),
+            URLQueryItem(name: "offset", value: String(describing: offset)),
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: "5.8")
         ]
         
         Alamofire.request(composer, method: .get).responseJSON {(groupsSearchList) in
-            let groupsSearch = try! JSONDecoder().decode(SearchGroupResponse.self, from: groupsSearchList.data!)
+          guard let groupsSearch = try? JSONDecoder().decode(SearchGroupResponse.self, from: groupsSearchList.data!)
+            else { return }
             completionHandler(groupsSearch)
         }
     }

@@ -7,26 +7,32 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PhotosTablesView: UICollectionViewController {
     
     private let reuseIdentifier = "photoCell"
     
     var photosUser: UIImageView!
-    
-    override func viewDidLoad() {
+    var usersPhoto = [PhotoItem]()
+   
+        override func viewDidLoad() {
         super.viewDidLoad()
+            vk.getPhotos { [weak self] photos in
+            self?.usersPhoto = photos.response.items
+            self?.collectionView.reloadData()
+        }
         
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return usersPhoto.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-        cell.photoImage = photosUser
-        
+        let url = URL(string: usersPhoto[indexPath.row].photo604)
+        cell.photoImage.kf.setImage(with: url, options: [.cacheOriginalImage])
         return cell
     }
 }

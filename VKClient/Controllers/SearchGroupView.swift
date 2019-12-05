@@ -13,29 +13,73 @@ import Kingfisher
 class SearchGroupTableView: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var GroupSearchBar: UISearchBar!
-
-    var groups = [ItemSearchGroup]()
     
+    var groups = [ItemSearchGroup]()
+    private var offset = 0
+    private var offsetSearchBar = 0
+    private var isSendingRequest = false
+    private var searchText1 = String()
     
     override func viewDidLoad() {
+        super .viewDidLoad()
+        
+        (tableView as UIScrollView).delegate = self
+        tableView.delegate = self
         GroupSearchBar.delegate = self
-        vk.getGroupsSearch(text: "Apple") { [weak self] groups in
-            self?.groups = groups.response.items
-            self?.tableView.reloadData()
+        getGroups()
+
+    }
+    
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let heightScroll = scrollView.contentSize.height
+        let offsetScroll = scrollView.contentOffset.y
+        let scroll = heightScroll - offsetScroll
+        if (scroll / heightScroll * 100) < 40 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute:  {
+                self.getGroups()
+            })
+            
         }
         
     }
     
     
-    func searchBar(_ search:UISearchBar, textDidChange searchText: String) {
+    func getGroups() {
+        if (isSendingRequest) {
+            return
+        }
+        isSendingRequest = true
+        vk.getGroupsSearch(offset: offset, text: "Apple") { [weak self] groups in
+            self?.isSendingRequest = false
+            self?.offset += groups.response.items.count
+            self?.groups = groups.response.items
+            self?.tableView.reloadData()
+        }
         
-        vk.getGroupsSearch(text: searchText) { [weak self] groups in
+        
+        
+    }
+    
+    func searchBar(_ search:UISearchBar, textDidChange searchText: String) {
+        if (isSendingRequest) {
+            return
+        }
+        vk.getGroupsSearch(offset: offsetSearchBar, text: searchText) { [weak self] groups in
+//            self?.searchText1 = searchText
+            self?.isSendingRequest = false
+//            self?.offset += groups.response.items.count
             self?.groups = groups.response.items
             self?.tableView.reloadData()
         }
         
         if searchText.isEmpty {
-            vk.getGroupsSearch(text: "Apple") { [weak self] groups in
+            if (isSendingRequest) {
+                return
+            }
+            vk.getGroupsSearch(offset: offsetSearchBar, text: "Apple") { [weak self] groups in
+                self?.isSendingRequest = false
+//                self?.offset += groups.response.items.count
                 self?.groups = groups.response.items
                 self?.tableView.reloadData()
             }
@@ -63,3 +107,4 @@ class SearchGroupTableView: UITableViewController, UISearchBarDelegate {
     }
     
 }
+

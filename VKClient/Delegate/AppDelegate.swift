@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let conf = Realm.Configuration(schemaVersion: 7)
         Realm.Configuration.defaultConfiguration = conf
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+        RealmDataBase.shared.deleteData()
 
         
         // Override point for customization after application launch.
